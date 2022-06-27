@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.bankslife.banksloja.dominios.Categoria;
 import br.com.bankslife.banksloja.dominios.Cidade;
+import br.com.bankslife.banksloja.dominios.Cliente;
+import br.com.bankslife.banksloja.dominios.Endereco;
 import br.com.bankslife.banksloja.dominios.Estado;
 import br.com.bankslife.banksloja.dominios.Produto;
+import br.com.bankslife.banksloja.dominios.enuns.TipoCliente;
 import br.com.bankslife.banksloja.repositories.CategoriaDAO;
 import br.com.bankslife.banksloja.repositories.CidadeDAO;
+import br.com.bankslife.banksloja.repositories.ClienteDAO;
+import br.com.bankslife.banksloja.repositories.EnderecoDAO;
 import br.com.bankslife.banksloja.repositories.EstadoDAO;
 import br.com.bankslife.banksloja.repositories.ProdutoDAO;
 
@@ -30,6 +35,12 @@ public class BankslojaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CidadeDAO cidadeDAO;
+	
+	@Autowired
+	private ClienteDAO clienteDAO;
+	
+	@Autowired
+	private EnderecoDAO enderecoDAO;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BankslojaApplication.class, args);
@@ -74,6 +85,18 @@ public class BankslojaApplication implements CommandLineRunner{
 		
 		estadoDAO.saveAll(Arrays.asList(est1, est2));
 		cidadeDAO.saveAll(Arrays.asList(c1, c2, c3, c4));
+		
+		Cliente cli1 = new Cliente(null, "Felipe", "felipe@mail.com", "33333333333", TipoCliente.PESSOAFISICA);
+		
+		cli1.getTelefones().addAll(Arrays.asList("223232323", "998989998"));
+		
+		Endereco e1 = new Endereco(null, "Rua 2", "s/n", "Res. Dolce vitta", "Polo de modas", "77102222", cli1, c1);
+		Endereco e2 = new Endereco(null, "Rua 1", "s/n", "QE 30", "Polo de modas", "77102222", cli1, c1);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteDAO.saveAll(Arrays.asList(cli1));
+		enderecoDAO.saveAll(Arrays.asList(e1, e2));
 	}
 	
 	
