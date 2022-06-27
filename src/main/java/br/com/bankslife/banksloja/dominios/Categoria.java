@@ -1,4 +1,4 @@
-package br.com.bankslife.lojavanelio.dominios;
+package br.com.bankslife.banksloja.dominios;
 
 import java.io.Serializable;
 import java.util.ArrayList;

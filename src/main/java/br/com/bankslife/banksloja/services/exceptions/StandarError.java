@@ -1,4 +1,4 @@
-package br.com.bankslife.lojavanelio.services.exceptions;
+package br.com.bankslife.banksloja.services.exceptions;
 
 import java.io.Serializable;
 

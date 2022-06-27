@@ -1,4 +1,4 @@
-package br.com.bankslife.lojavanelio.controllers;
+package br.com.bankslife.banksloja.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bankslife.lojavanelio.dominios.Categoria;
-import br.com.bankslife.lojavanelio.services.CategoriaService;
+import br.com.bankslife.banksloja.dominios.Categoria;
+import br.com.bankslife.banksloja.services.CategoriaService;
 
 @RestController
 @RequestMapping(value="/categorias")

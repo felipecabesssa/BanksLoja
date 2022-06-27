@@ -1,4 +1,4 @@
-package br.com.bankslife.lojavanelio.services.exceptions;
+package br.com.bankslife.banksloja.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException{
 

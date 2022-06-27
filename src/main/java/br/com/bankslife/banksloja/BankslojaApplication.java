@@ -1,4 +1,4 @@
-package br.com.bankslife.lojavanelio;
+package br.com.bankslife.banksloja;
 
 import java.util.Arrays;
 
@@ -7,22 +7,32 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.bankslife.lojavanelio.dominios.Categoria;
-import br.com.bankslife.lojavanelio.dominios.Produto;
-import br.com.bankslife.lojavanelio.repositories.CategoriaDAO;
-import br.com.bankslife.lojavanelio.repositories.ProdutoDAO;
+import br.com.bankslife.banksloja.dominios.Categoria;
+import br.com.bankslife.banksloja.dominios.Cidade;
+import br.com.bankslife.banksloja.dominios.Estado;
+import br.com.bankslife.banksloja.dominios.Produto;
+import br.com.bankslife.banksloja.repositories.CategoriaDAO;
+import br.com.bankslife.banksloja.repositories.CidadeDAO;
+import br.com.bankslife.banksloja.repositories.EstadoDAO;
+import br.com.bankslife.banksloja.repositories.ProdutoDAO;
 
 @SpringBootApplication
-public class LojavanelioApplication implements CommandLineRunner{
+public class BankslojaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CategoriaDAO categoriaDAO;
 	
 	@Autowired
 	private ProdutoDAO produtoDAO;
+	
+	@Autowired
+	private EstadoDAO estadoDAO;
+	
+	@Autowired
+	private CidadeDAO cidadeDAO;
 
 	public static void main(String[] args) {
-		SpringApplication.run(LojavanelioApplication.class, args);
+		SpringApplication.run(BankslojaApplication.class, args);
 	}
 
 	@Override
@@ -50,7 +60,20 @@ public class LojavanelioApplication implements CommandLineRunner{
 		
 		categoriaDAO.saveAll(Arrays.asList(cat1, cat2, cat3, cat4));
 		produtoDAO.saveAll(Arrays.asList(p1, p2, p3, p4));
+
+		Estado est1 = new Estado(null, "DF");
+		Estado est2 = new Estado(null, "Brasília");
 		
+		Cidade c1 = new Cidade(null, "Brasília", est2);
+		Cidade c2 = new Cidade(null, "Ceilandia", est1);
+		Cidade c3 = new Cidade(null, "Val Paraiso", est1);
+		Cidade c4 = new Cidade(null, "Guara", est2);
+		
+		est1.getCidades().addAll(Arrays.asList(c2, c3));
+		est2.getCidades().addAll(Arrays.asList(c1, c4));
+		
+		estadoDAO.saveAll(Arrays.asList(est1, est2));
+		cidadeDAO.saveAll(Arrays.asList(c1, c2, c3, c4));
 	}
 	
 	

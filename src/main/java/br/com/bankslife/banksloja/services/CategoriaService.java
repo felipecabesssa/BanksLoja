@@ -1,13 +1,13 @@
-package br.com.bankslife.lojavanelio.services;
+package br.com.bankslife.banksloja.services;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.bankslife.lojavanelio.dominios.Categoria;
-import br.com.bankslife.lojavanelio.repositories.CategoriaDAO;
-import br.com.bankslife.lojavanelio.services.exceptions.ObjectNotFoundException;
+import br.com.bankslife.banksloja.dominios.Categoria;
+import br.com.bankslife.banksloja.repositories.CategoriaDAO;
+import br.com.bankslife.banksloja.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
