@@ -13,6 +13,7 @@ import br.com.bankslife.banksloja.dominios.Cidade;
 import br.com.bankslife.banksloja.dominios.Cliente;
 import br.com.bankslife.banksloja.dominios.Endereco;
 import br.com.bankslife.banksloja.dominios.Estado;
+import br.com.bankslife.banksloja.dominios.ItemPedido;
 import br.com.bankslife.banksloja.dominios.Pagamento;
 import br.com.bankslife.banksloja.dominios.PagamentoComCartao;
 import br.com.bankslife.banksloja.dominios.PagamentoNoBanks;
@@ -25,6 +26,7 @@ import br.com.bankslife.banksloja.repositories.CidadeDAO;
 import br.com.bankslife.banksloja.repositories.ClienteDAO;
 import br.com.bankslife.banksloja.repositories.EnderecoDAO;
 import br.com.bankslife.banksloja.repositories.EstadoDAO;
+import br.com.bankslife.banksloja.repositories.ItemPedidoDAO;
 import br.com.bankslife.banksloja.repositories.PagamentoDAO;
 import br.com.bankslife.banksloja.repositories.PedidoDAO;
 import br.com.bankslife.banksloja.repositories.ProdutoDAO;
@@ -55,6 +57,9 @@ public class BankslojaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PagamentoDAO pagamentoDAO;
+	
+	@Autowired
+	private ItemPedidoDAO itemPedidoDAO;
 
 	public static void main(String[] args) {
 		SpringApplication.run(BankslojaApplication.class, args);
@@ -128,6 +133,17 @@ public class BankslojaApplication implements CommandLineRunner{
 		
 		pedidoDAO.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoDAO.saveAll(Arrays.asList(pagto1, pagto2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 150.00);
+		ItemPedido ip2 = new ItemPedido(ped2, p2, 50.00, 5, 150.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip2));
+		
+		itemPedidoDAO.saveAll(Arrays.asList(ip1, ip2));
+		
 	}
 	
 	
